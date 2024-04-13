@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            font-weight: bold;
+        }
+        body{
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image:url(mypng.png); 
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color:rgb(12, 12, 44);
+            background-size: cover;
+        }
+        .calculator{
+            border: 2px solid aqua ;
+            padding: 12px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            filter: drop-shadow(2px 2px 10px aqua);
+            box-shadow: (7px 9px 20px aqua);
+        }
+        input{
+            width: 320px;
+            padding: 20px;
+            margin: 10px;
+            background: rgba(255,255, 255, 0.3);
+            box-shadow: inset 3px 3px 8px rgba(0,0,0,0.3);
+            font-size: 65px;
+            text-align: right;
+            color: white;
+            border: 2px solid rgba(0,0,0,0.3);
+            border-radius: 16px;
+        }
+        input::placeholder{
+            color: aliceblue;
+        }
+        button{
+            height: 60px;
+            width: 60px;
+            margin: 10px;
+            color: aliceblue;
+            background: rgba(0, 0, 0, 0.8);
+            font-size: 24px;
+            cursor: pointer;
+            border: 1px solid rgba(255,255, 255, 0.2);
+            border-radius: 30px;
+            text-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+            box-shadow: -1px 2px 10px rgba(0,0,0,0.5);
+        }
+        .ac, .del{
+            font-size: 20px;
+        }
+        button:hover{
+            color: rgb(48, 46, 42);
+            background:orange;
+        }
+        .equalbtn{
+           background: orange;
+        }
+        .operator{
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <input type="text" placeholder="0" id="inputBox" readonly>
+        <div>
+            <button class="operator ac">AC</button>
+            <button  class="operator del">DEL</button>
+            <button  class="operator">%</button>
+            <button  class="operator">/</button>
+        </div> 
+        <div>
+            <button >7</button>
+            <button >8</button>
+            <button >9</button>
+            <button  class="operator">*</button>
+        </div> 
+        <div>
+            <button >4</button>
+            <button >5</button>
+            <button >6</button>
+            <button class="operator">-</button>
+        </div> 
+        <div>
+            <button >1</button>
+            <button >2</button>
+            <button >3</button>
+            <button  class="operator">+</button>
+        </div> 
+        <div>
+            <button >00</button>
+            <button >0</button>
+            <button >.</button>
+            <button  class="equalbtn">=</button>
+        </div> 
+    </div>
+    <script>
+        let display=document.getElementById("inputBox");
+        let buttons=document.querySelectorAll('button');
+        let btnarr= Array.from(buttons); 
+        let string='';
+        btnarr.forEach(btn => {
+           
+             btn.addEventListener('click',function(e){
+                if(e.target.innerHTML=='DEL'){
+                    string=string.substring(0,string.length-1);
+                    display.value=string;
+                }
+                else if(e.target.innerHTML=='AC'){
+                    string='';
+                    display.value=string;
+                }
+                else if(e.target.innerHTML=='='){
+                    string= eval(string);
+                    display.value=string;
+                }
+                else{
+                string += e.target.innerHTML;
+                display.value=string;}
+                // console.log(e.target.innerHTML);
+             });
+        });
+    </script>
+</body>
+</html>
